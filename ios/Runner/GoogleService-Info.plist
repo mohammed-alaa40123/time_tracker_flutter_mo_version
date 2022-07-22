@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>23321612099-bnqgj6trnk9nh4k7sn9ef996ap9glsno.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.23321612099-bnqgj6trnk9nh4k7sn9ef996ap9glsno</string>
+	<key>ANDROID_CLIENT_ID</key>
+	<string>23321612099-a1bo0lr375ongjt15upk3nl0bn36tgif.apps.googleusercontent.com</string>
+	<key>API_KEY</key>
+	<string>AIzaSyCPnua9aLig9Fu8PCi-jTehbXlUP2uo9bk</string>
+	<key>GCM_SENDER_ID</key>
+	<string>23321612099</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.example.moTimeTracker</string>
+	<key>PROJECT_ID</key>
+	<string>mo-tracker</string>
+	<key>STORAGE_BUCKET</key>
+	<string>mo-tracker.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:23321612099:ios:26acbe56709efbc33c29f6</string>
+	<key>DATABASE_URL</key>
+	<string>https://mo-tracker-default-rtdb.firebaseio.com</string>
+</dict>
+</plist>

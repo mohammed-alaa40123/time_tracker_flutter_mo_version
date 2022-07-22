@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "23321612099",
+    "firebase_url": "https://mo-tracker-default-rtdb.firebaseio.com",
+    "project_id": "mo-tracker",
+    "storage_bucket": "mo-tracker.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:23321612099:android:4243ae77adf20cb43c29f6",
+        "android_client_info": {
+          "package_name": "com.example.mo_time_tracker"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "23321612099-a1bo0lr375ongjt15upk3nl0bn36tgif.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.mo_time_tracker",
+            "certificate_hash": "994aaf81bc91ac81f5207d365f6ec178a2c9ab59"
+          }
+        },
+        {
+          "client_id": "23321612099-jbgm6gpb7rlp8jdotag4dqqjet8m8815.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCdF6JNzN_2cot-H5qeThalFh5L_x3SF3Y"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "23321612099-jbgm6gpb7rlp8jdotag4dqqjet8m8815.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
