@@ -1,11 +1,29 @@
-// ignore_for_file: prefer_const_constructors, duplicate_ignore, deprecated_member_use, prefer_const_literals_to_create_immutables
+// ignore_for_file: prefer_const_constructors, duplicate_ignore, deprecated_member_use, prefer_const_literals_to_create_immutables, avoid_print
 
 import 'package:mo_time_tracker/App/sign_in_button.dart';
 import 'package:flutter/material.dart';
 import 'package:mo_time_tracker/CommonWidgets/custom_raised_button.dart';
+import 'package:mo_time_tracker/services/Auth.dart';
 
 class SignInPage extends StatelessWidget {
-  const SignInPage({Key? key}) : super(key: key);
+  const SignInPage({Key? key, required this.auth}) : super(key: key);
+  final Authbase auth;
+
+  Future<void> _signInAnonomously() async {
+    try {
+      await auth.signInAnonymously();
+    } catch (e) {
+      print(e.toString());
+    }
+  }
+
+  Future<void> _signInWithGoogle() async {
+    try {
+      await auth.signInWithGoogle();
+    } catch (e) {
+      print(e.toString());
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -76,7 +94,7 @@ class SignInPage extends StatelessWidget {
                 width: 100,
                 height: 20,
                 color: Colors.red,
-                onPressed: () {},
+                onPressed: _signInAnonomously,
                 child: Text("Go Anonymous",
                     style: TextStyle(
                       color: Color.fromARGB(255, 250, 243, 221),
@@ -112,6 +130,4 @@ class SignInPage extends StatelessWidget {
           ],
         ));
   }
-
-  void _signInWithGoogle() {}
 }
