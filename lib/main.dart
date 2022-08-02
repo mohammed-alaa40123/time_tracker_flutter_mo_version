@@ -17,7 +17,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
         title: 'Mo Tracker',
         theme: ThemeData(
-          primarySwatch: Colors.red,
+          primarySwatch: Colors.blue,
         ),
         home: LandingPage(
           auth: Auth(),

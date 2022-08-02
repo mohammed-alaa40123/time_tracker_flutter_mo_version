@@ -9,7 +9,8 @@ class SignInButton extends CustomRaisedButton {
       required Color color,
       required Color textColor,
       required VoidCallback onPressed,
-      String? asset})
+      asset,
+      Text? child})
       : super(
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,

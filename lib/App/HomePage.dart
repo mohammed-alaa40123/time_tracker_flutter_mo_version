@@ -21,7 +21,9 @@ class HomePage extends StatelessWidget {
               onPressed: _logOut,
               child: Text(
                 "Logout",
-                style: TextStyle(color: Colors.white),
+                style: TextStyle(
+                  color: Color(0xFFfad0c4),
+                ),
               ))
         ],
       ),

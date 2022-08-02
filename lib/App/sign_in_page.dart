@@ -1,5 +1,6 @@
 // ignore_for_file: prefer_const_constructors, duplicate_ignore, deprecated_member_use, prefer_const_literals_to_create_immutables, avoid_print
 
+import 'package:mo_time_tracker/App/email_sign_in_page.dart';
 import 'package:mo_time_tracker/App/sign_in_button.dart';
 import 'package:flutter/material.dart';
 import 'package:mo_time_tracker/CommonWidgets/custom_raised_button.dart';
@@ -33,6 +34,13 @@ class SignInPage extends StatelessWidget {
     }
   }
 
+  void _signInWithEmail(BuildContext context) {
+    Navigator.of(context).push(MaterialPageRoute<void>(
+      builder: (context) => EmailSignInPage(),
+      fullscreenDialog: true,
+    ));
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -41,19 +49,19 @@ class SignInPage extends StatelessWidget {
           'Mo Tracker',
           textAlign: TextAlign.center,
           style: TextStyle(
-            color: Color.fromARGB(255, 250, 243, 221),
+            color: Color(0xFFFFAEBC),
             fontWeight: FontWeight.bold,
             fontFamily: "Splash",
           ),
         ),
         elevation: 4.0,
       ),
-      body: _buildContent(),
-      backgroundColor: Color.fromARGB(255, 250, 243, 221),
+      body: _buildContent(context),
+      backgroundColor: Color(0xFFffeef1),
     );
   }
 
-  Widget _buildContent() {
+  Widget _buildContent(BuildContext context) {
     return Padding(
         padding: EdgeInsets.all(10),
         child: Column(
@@ -67,7 +75,7 @@ class SignInPage extends StatelessWidget {
                   fontSize: 60,
                   fontWeight: FontWeight.bold,
                   fontFamily: "Splash",
-                  color: Color(0xFFF44336)),
+                  color: Color(0xFFFFAEBC)),
             ),
             SizedBox(
               height: 50,
@@ -76,8 +84,8 @@ class SignInPage extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 SignInButton(
-                  color: Color.fromARGB(255, 250, 243, 221),
-                  textColor: Colors.red,
+                  color: Color(0xFFFFAEBC),
+                  textColor: Color(0xFF448AFF),
                   onPressed: _signInWithGoogle,
                   text: "    Sign in with Google    ",
                   asset: 'assets/images/google.png',
@@ -88,11 +96,11 @@ class SignInPage extends StatelessWidget {
               height: 12,
             ),
             SignInButton(
-              color: Color.fromRGBO(56, 71, 230, 1),
-              textColor: Color.fromARGB(255, 250, 243, 221),
+              color: Color.fromARGB(255, 255, 255, 255),
+              textColor: Color(0xFF448AFF),
               onPressed: _signInWithFacebook,
               text: "Sign in with Facebook",
-              asset: 'assets/images/facebookpngjpg copy.png',
+              asset: 'assets/images/facebookpng.png',
             ),
             SizedBox(
               height: 12,
@@ -101,11 +109,11 @@ class SignInPage extends StatelessWidget {
                 borderRadius: 15,
                 width: 100,
                 height: 20,
-                color: Colors.red,
+                color: Colors.blueAccent,
                 onPressed: _signInAnonomously,
                 child: Text("Go Anonymous",
                     style: TextStyle(
-                      color: Color.fromARGB(255, 250, 243, 221),
+                      color: Color.fromARGB(255, 255, 255, 255),
                       fontFamily: "Forte",
                       fontStyle: FontStyle.normal,
                     ))),
@@ -119,17 +127,17 @@ class SignInPage extends StatelessWidget {
                   "Or",
                   style: TextStyle(
                     fontSize: 18,
-                    color: Colors.red,
+                    color: Color(0xFFFFAEBC),
                     fontFamily: "Splash",
                   ),
                 ),
                 InkWell(
-                    onTap: _signInWithGoogle,
+                    onTap: () => _signInWithEmail(context),
                     child: Text(
                       "    Create an account  ",
                       style: TextStyle(
                           fontSize: 15,
-                          color: Color.fromARGB(255, 56, 71, 230),
+                          color: Color(0xFF448AFF),
                           fontFamily: "Forte",
                           fontWeight: FontWeight.bold),
                     )),
