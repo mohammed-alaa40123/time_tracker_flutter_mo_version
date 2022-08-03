@@ -1,4 +1,4 @@
-// ignore_for_file: body_might_complete_normally_nullable, file_names, unnecessary_null_comparison, import_of_legacy_library_into_null_safe
+// ignore_for_file: body_might_complete_normally_nullable, file_names, unnecessary_null_comparison, import_of_legacy_library_into_null_safe, non_constant_identifier_names
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_login_facebook/flutter_login_facebook.dart';
@@ -11,6 +11,8 @@ abstract class Authbase {
   Future<User?> signInWithFacebook();
   Stream<User?> authStateChange();
   Future<User?> signOut();
+  Future<User?> signInWithEmailAndPassword(String email, String password);
+  Future<User?> createAnAccountWithEmail(String email, String password);
 }
 
 class Auth implements Authbase {
@@ -77,6 +79,21 @@ class Auth implements Authbase {
       default:
         throw UnimplementedError();
     }
+  }
+
+  @override
+  Future<User?> signInWithEmailAndPassword(
+      String email, String password) async {
+    final UserCredential = await f.signInWithCredential(
+        EmailAuthProvider.credential(email: email, password: password));
+    return UserCredential.user;
+  }
+
+  @override
+  Future<User?> createAnAccountWithEmail(String email, String password) async {
+    final UserCredential = await f.createUserWithEmailAndPassword(
+        email: email, password: password);
+    return UserCredential.user;
   }
 
   @override

@@ -36,7 +36,7 @@ class SignInPage extends StatelessWidget {
 
   void _signInWithEmail(BuildContext context) {
     Navigator.of(context).push(MaterialPageRoute<void>(
-      builder: (context) => EmailSignInPage(),
+      builder: (context) => EmailSignInPage(auth),
       fullscreenDialog: true,
     ));
   }
@@ -64,10 +64,11 @@ class SignInPage extends StatelessWidget {
   Widget _buildContent(BuildContext context) {
     return Padding(
         padding: EdgeInsets.all(10),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.stretch,
+        child: ListView(
           children: [
+            SizedBox(
+              height: 170,
+            ),
             Text(
               "Sign in",
               textAlign: TextAlign.center,
