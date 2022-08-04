@@ -13,7 +13,7 @@ class SignInButton extends CustomRaisedButton {
       Text? child})
       : super(
           child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             mainAxisSize: MainAxisSize.max,
             children: [
               Text(text,

@@ -34,9 +34,9 @@ class SignInPage extends StatelessWidget {
     }
   }
 
-  void _signInWithEmail(BuildContext context) {
+  void _signInWithEmail(BuildContext context, signIn) {
     Navigator.of(context).push(MaterialPageRoute<void>(
-      builder: (context) => EmailSignInPage(auth),
+      builder: (context) => EmailSignInPage(auth, signIn),
       fullscreenDialog: true,
     ));
   }
@@ -86,9 +86,9 @@ class SignInPage extends StatelessWidget {
               children: [
                 SignInButton(
                   color: Color(0xFFFFAEBC),
-                  textColor: Color(0xFF448AFF),
+                  textColor: Color.fromARGB(255, 255, 255, 255),
                   onPressed: _signInWithGoogle,
-                  text: "    Sign in with Google    ",
+                  text: " Sign in with Google ",
                   asset: 'assets/images/google.png',
                 ),
               ],
@@ -98,7 +98,7 @@ class SignInPage extends StatelessWidget {
             ),
             SignInButton(
               color: Color.fromARGB(255, 255, 255, 255),
-              textColor: Color(0xFF448AFF),
+              textColor: Colors.blueAccent,
               onPressed: _signInWithFacebook,
               text: "Sign in with Facebook",
               asset: 'assets/images/facebookpng.png',
@@ -111,13 +111,22 @@ class SignInPage extends StatelessWidget {
                 width: 100,
                 height: 20,
                 color: Colors.blueAccent,
-                onPressed: _signInAnonomously,
-                child: Text("Go Anonymous",
-                    style: TextStyle(
-                      color: Color.fromARGB(255, 255, 255, 255),
-                      fontFamily: "Forte",
-                      fontStyle: FontStyle.normal,
-                    ))),
+                onPressed: () => _signInWithEmail(context, true),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    Text("Sign in with Email",
+                        style: TextStyle(
+                          color: Color.fromARGB(255, 255, 255, 255),
+                          fontFamily: "Forte",
+                          fontStyle: FontStyle.normal,
+                        )),
+                    Icon(
+                      Icons.email_rounded,
+                      color: Color(0xFFFFAEBC),
+                    )
+                  ],
+                )),
             SizedBox(
               height: 12,
             ),
@@ -133,7 +142,7 @@ class SignInPage extends StatelessWidget {
                   ),
                 ),
                 InkWell(
-                    onTap: () => _signInWithEmail(context),
+                    onTap: () => _signInWithEmail(context, false),
                     child: Text(
                       "    Create an account  ",
                       style: TextStyle(
@@ -143,7 +152,22 @@ class SignInPage extends StatelessWidget {
                           fontWeight: FontWeight.bold),
                     )),
               ],
-            )
+            ),
+            SizedBox(
+              height: 30,
+            ),
+            CustomRaisedButton(
+                borderRadius: 15,
+                width: 100,
+                height: 20,
+                color: Colors.blueAccent,
+                onPressed: _signInAnonomously,
+                child: Text("Go Anonymous",
+                    style: TextStyle(
+                      color: Color.fromARGB(255, 255, 255, 255),
+                      fontFamily: "Forte",
+                      fontStyle: FontStyle.normal,
+                    ))),
           ],
         ));
   }

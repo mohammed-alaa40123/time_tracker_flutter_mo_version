@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_constructors_in_immutables, invalid_required_positional_param, use_key_in_widget_constructors
+// ignore_for_file: prefer_const_constructors, prefer_const_constructors_in_immutables, invalid_required_positional_param, use_key_in_widget_constructors, prefer_typing_uninitialized_variables
 
 import 'package:flutter/material.dart';
 import 'package:mo_time_tracker/App/email_sign_in_form.dart';
@@ -6,7 +6,8 @@ import 'package:mo_time_tracker/services/Auth.dart';
 
 class EmailSignInPage extends StatelessWidget {
   final Authbase auth;
-  EmailSignInPage(@required this.auth);
+  late final signIn;
+  EmailSignInPage(@required this.auth, this.signIn);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -24,7 +25,7 @@ class EmailSignInPage extends StatelessWidget {
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
-        child: Card(child: EmailSigninForm(auth)),
+        child: Card(child: EmailSigninForm(auth, signIn)),
       ),
       backgroundColor: Color(0xFFffeef1),
     );
