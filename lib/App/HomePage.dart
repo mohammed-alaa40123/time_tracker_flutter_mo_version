@@ -1,14 +1,12 @@
-// ignore_for_file: prefer_const_constructors, deprecated_member_use, file_names, non_constant_identifier_names
+// ignore_for_file: prefer_const_constructors, deprecated_member_use, file_names, non_constant_identifier_names, use_key_in_widget_constructors
 
 import 'package:flutter/material.dart';
-import 'package:mo_time_tracker/services/Auth.dart';
+import '../services/Auth_provider.dart';
 
 class HomePage extends StatelessWidget {
-  final Authbase auth;
-
-  const HomePage({Key? key, required this.auth}) : super(key: key);
-
   Future<void> _confirmSignOut(BuildContext context) async {
+    final auth = AuthProvider.of(context);
+
     await showDialog(
         context: context,
         builder: (context) {

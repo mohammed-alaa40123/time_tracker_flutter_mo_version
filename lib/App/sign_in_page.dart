@@ -1,33 +1,37 @@
-// ignore_for_file: prefer_const_constructors, duplicate_ignore, deprecated_member_use, prefer_const_literals_to_create_immutables, avoid_print
+// ignore_for_file: prefer_const_constructors, duplicate_ignore, deprecated_member_use, prefer_const_literals_to_create_immutables, avoid_print, use_key_in_widget_constructors
 
 import 'package:mo_time_tracker/App/email_sign_in_page.dart';
 import 'package:mo_time_tracker/App/sign_in_button.dart';
 import 'package:flutter/material.dart';
 import 'package:mo_time_tracker/CommonWidgets/custom_raised_button.dart';
-import 'package:mo_time_tracker/services/Auth.dart';
+
+import '../services/Auth_provider.dart';
 
 class SignInPage extends StatelessWidget {
-  const SignInPage({Key? key, required this.auth}) : super(key: key);
-  final Authbase auth;
-
-  Future<void> _signInAnonomously() async {
+  Future<void> _signInAnonomously(BuildContext context) async {
     try {
+      final auth = AuthProvider.of(context);
+
       await auth.signInAnonymously();
     } catch (e) {
       print(e.toString());
     }
   }
 
-  Future<void> _signInWithGoogle() async {
+  Future<void> _signInWithGoogle(BuildContext context) async {
     try {
+      final auth = AuthProvider.of(context);
+
       await auth.signInWithGoogle();
     } catch (e) {
       print(e.toString());
     }
   }
 
-  Future<void> _signInWithFacebook() async {
+  Future<void> _signInWithFacebook(BuildContext context) async {
     try {
+      final auth = AuthProvider.of(context);
+
       await auth.signInWithFacebook();
     } catch (e) {
       print(e.toString());
@@ -35,8 +39,10 @@ class SignInPage extends StatelessWidget {
   }
 
   void _signInWithEmail(BuildContext context, signIn) {
+    final auth = AuthProvider.of(context);
+
     Navigator.of(context).push(MaterialPageRoute<void>(
-      builder: (context) => EmailSignInPage(auth, signIn),
+      builder: (context) => EmailSignInPage(signIn),
       fullscreenDialog: true,
     ));
   }
@@ -87,7 +93,7 @@ class SignInPage extends StatelessWidget {
                 SignInButton(
                   color: Color(0xFFFFAEBC),
                   textColor: Color.fromARGB(255, 255, 255, 255),
-                  onPressed: _signInWithGoogle,
+                  onPressed: () => _signInWithGoogle(context),
                   text: " Sign in with Google ",
                   asset: 'assets/images/google.png',
                 ),
@@ -99,7 +105,7 @@ class SignInPage extends StatelessWidget {
             SignInButton(
               color: Color.fromARGB(255, 255, 255, 255),
               textColor: Colors.blueAccent,
-              onPressed: _signInWithFacebook,
+              onPressed: () => _signInWithFacebook(context),
               text: "Sign in with Facebook",
               asset: 'assets/images/facebookpng.png',
             ),
@@ -161,7 +167,7 @@ class SignInPage extends StatelessWidget {
                 width: 100,
                 height: 20,
                 color: Colors.blueAccent,
-                onPressed: _signInAnonomously,
+                onPressed: () => _signInAnonomously(context),
                 child: Text("Go Anonymous",
                     style: TextStyle(
                       color: Color.fromARGB(255, 255, 255, 255),

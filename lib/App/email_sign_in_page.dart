@@ -2,12 +2,10 @@
 
 import 'package:flutter/material.dart';
 import 'package:mo_time_tracker/App/email_sign_in_form.dart';
-import 'package:mo_time_tracker/services/Auth.dart';
 
 class EmailSignInPage extends StatelessWidget {
-  final Authbase auth;
   late final signIn;
-  EmailSignInPage(@required this.auth, this.signIn);
+  EmailSignInPage(this.signIn);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -25,7 +23,7 @@ class EmailSignInPage extends StatelessWidget {
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
-        child: Card(child: EmailSigninForm(auth, signIn)),
+        child: Card(child: EmailSigninForm(signIn)),
       ),
       backgroundColor: Color(0xFFffeef1),
     );

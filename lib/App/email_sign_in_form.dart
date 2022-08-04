@@ -3,14 +3,13 @@
 import 'package:flutter/material.dart';
 import 'package:mo_time_tracker/App/validators.dart';
 import 'package:mo_time_tracker/CommonWidgets/custom_raised_button.dart';
-import 'package:mo_time_tracker/services/Auth.dart';
+import '../services/Auth_provider.dart';
 
 enum EmailSignInFOrmType { signIn, register }
 
 class EmailSigninForm extends StatefulWidget with EmailAndPasswordValidator {
   late final signInn;
-  EmailSigninForm(@required this.auth, this.signInn);
-  final Authbase auth;
+  EmailSigninForm(this.signInn);
   @override
   State<EmailSigninForm> createState() => _EmailSigninFormState();
 }
@@ -36,11 +35,12 @@ class _EmailSigninFormState extends State<EmailSigninForm> {
       _isLoading = true;
     });
     try {
+      final auth = AuthProvider.of(context);
       await Future.delayed(Duration(milliseconds: 500));
       if (_fOrmType == EmailSignInFOrmType.signIn) {
-        await widget.auth.signInWithEmailAndPassword(_email, _password);
+        await auth.signInWithEmailAndPassword(_email, _password);
       } else {
-        await widget.auth.createAnAccountWithEmail(_email, _password);
+        await auth.createAnAccountWithEmail(_email, _password);
       }
       Navigator.of(context).pop();
     } catch (e) {
@@ -49,7 +49,9 @@ class _EmailSigninFormState extends State<EmailSigninForm> {
           context: context,
           builder: (context) {
             return AlertDialog(
-              title: Text("Sign in failed"),
+              title: widget.signInn
+                  ? Text("Sign in failed")
+                  : Text("Create an Account failed"),
               content: Text(e.toString()),
               actions: [
                 FlatButton(

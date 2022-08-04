@@ -1,7 +1,9 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:mo_time_tracker/App/LandingPage.dart';
 import 'package:mo_time_tracker/services/Auth.dart';
+import 'package:mo_time_tracker/services/Auth_provider.dart';
+
+import 'App/LandingPage.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -14,14 +16,15 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-        debugShowCheckedModeBanner: false,
-        title: 'Mo Tracker',
-        theme: ThemeData(
-          primarySwatch: Colors.blue,
-        ),
-        home: LandingPage(
-          auth: Auth(),
-        ));
+    return AuthProvider(
+      auth: Auth(),
+      child: MaterialApp(
+          debugShowCheckedModeBanner: false,
+          title: 'Mo Tracker',
+          theme: ThemeData(
+            primarySwatch: Colors.blue,
+          ),
+          home: LandingPage()),
+    );
   }
 }
