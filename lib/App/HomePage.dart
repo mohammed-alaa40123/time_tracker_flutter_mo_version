@@ -1,11 +1,12 @@
 // ignore_for_file: prefer_const_constructors, deprecated_member_use, file_names, non_constant_identifier_names, use_key_in_widget_constructors
 
 import 'package:flutter/material.dart';
-import '../services/Auth_provider.dart';
+import 'package:provider/provider.dart';
+import '../services/Auth.dart';
 
 class HomePage extends StatelessWidget {
   Future<void> _confirmSignOut(BuildContext context) async {
-    final auth = AuthProvider.of(context);
+    final auth = Provider.of<Authbase>(context, listen: false);
 
     await showDialog(
         context: context,

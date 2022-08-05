@@ -4,13 +4,14 @@ import 'package:mo_time_tracker/App/email_sign_in_page.dart';
 import 'package:mo_time_tracker/App/sign_in_button.dart';
 import 'package:flutter/material.dart';
 import 'package:mo_time_tracker/CommonWidgets/custom_raised_button.dart';
+import 'package:provider/provider.dart';
 
-import '../services/Auth_provider.dart';
+import '../services/Auth.dart';
 
 class SignInPage extends StatelessWidget {
   Future<void> _signInAnonomously(BuildContext context) async {
     try {
-      final auth = AuthProvider.of(context);
+      final auth = Provider.of<Authbase>(context, listen: false);
 
       await auth.signInAnonymously();
     } catch (e) {
@@ -20,7 +21,7 @@ class SignInPage extends StatelessWidget {
 
   Future<void> _signInWithGoogle(BuildContext context) async {
     try {
-      final auth = AuthProvider.of(context);
+      final auth = Provider.of<Authbase>(context, listen: false);
 
       await auth.signInWithGoogle();
     } catch (e) {
@@ -30,7 +31,7 @@ class SignInPage extends StatelessWidget {
 
   Future<void> _signInWithFacebook(BuildContext context) async {
     try {
-      final auth = AuthProvider.of(context);
+      final auth = Provider.of<Authbase>(context, listen: false);
 
       await auth.signInWithFacebook();
     } catch (e) {
@@ -39,8 +40,6 @@ class SignInPage extends StatelessWidget {
   }
 
   void _signInWithEmail(BuildContext context, signIn) {
-    final auth = AuthProvider.of(context);
-
     Navigator.of(context).push(MaterialPageRoute<void>(
       builder: (context) => EmailSignInPage(signIn),
       fullscreenDialog: true,

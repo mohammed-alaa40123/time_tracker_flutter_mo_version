@@ -1,7 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:mo_time_tracker/services/Auth.dart';
-import 'package:mo_time_tracker/services/Auth_provider.dart';
+import 'package:provider/provider.dart';
 
 import 'App/LandingPage.dart';
 
@@ -16,8 +16,8 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return AuthProvider(
-      auth: Auth(),
+    return Provider<Authbase>(
+      create: ((context) => Auth()),
       child: MaterialApp(
           debugShowCheckedModeBanner: false,
           title: 'Mo Tracker',

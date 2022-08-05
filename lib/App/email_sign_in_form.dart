@@ -3,7 +3,9 @@
 import 'package:flutter/material.dart';
 import 'package:mo_time_tracker/App/validators.dart';
 import 'package:mo_time_tracker/CommonWidgets/custom_raised_button.dart';
-import '../services/Auth_provider.dart';
+import 'package:provider/provider.dart';
+
+import '../services/Auth.dart';
 
 enum EmailSignInFOrmType { signIn, register }
 
@@ -35,7 +37,7 @@ class _EmailSigninFormState extends State<EmailSigninForm> {
       _isLoading = true;
     });
     try {
-      final auth = AuthProvider.of(context);
+      final auth = Provider.of<Authbase>(context, listen: false);
       await Future.delayed(Duration(milliseconds: 500));
       if (_fOrmType == EmailSignInFOrmType.signIn) {
         await auth.signInWithEmailAndPassword(_email, _password);
