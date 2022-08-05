@@ -1,8 +1,10 @@
 // ignore_for_file: prefer_const_constructors, deprecated_member_use, avoid_print, non_constant_identifier_names, use_key_in_widget_constructors, prefer_final_fields, unused_field, use_build_context_synchronously, prefer_const_constructors_in_immutables, invalid_required_positional_param, unused_local_variable, prefer_typing_uninitialized_variables
 
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:mo_time_tracker/App/validators.dart';
+import 'package:mo_time_tracker/services/validators.dart';
 import 'package:mo_time_tracker/CommonWidgets/custom_raised_button.dart';
+import 'package:mo_time_tracker/CommonWidgets/show_exeptions_alert_dialog.dart';
 import 'package:provider/provider.dart';
 
 import '../services/Auth.dart';
@@ -26,6 +28,15 @@ class _EmailSigninFormState extends State<EmailSigninForm> {
   final FocusNode _emailFocusNode = FocusNode();
   final FocusNode _passwordFocusNode = FocusNode();
 
+  @override
+  void dispose() {
+    _emailFocusNode.dispose();
+    _passwordFocusNode.dispose();
+    _emailTextEditingController.dispose();
+    _passwordTextEditingController.dispose();
+    super.dispose();
+  }
+
   EmailSignInFOrmType _fOrmType = EmailSignInFOrmType.signIn;
   String get _email => _emailTextEditingController.text;
   String get _password => _passwordTextEditingController.text;
@@ -45,23 +56,13 @@ class _EmailSigninFormState extends State<EmailSigninForm> {
         await auth.createAnAccountWithEmail(_email, _password);
       }
       Navigator.of(context).pop();
-    } catch (e) {
+    } on FirebaseAuthException catch (e) {
       print(e.toString());
-      showDialog(
-          context: context,
-          builder: (context) {
-            return AlertDialog(
-              title: widget.signInn
-                  ? Text("Sign in failed")
-                  : Text("Create an Account failed"),
-              content: Text(e.toString()),
-              actions: [
-                FlatButton(
-                    onPressed: () => Navigator.of(context).pop(),
-                    child: Text("Ok"))
-              ],
-            );
-          });
+      showExeptionAlertDialog(
+        context,
+        exception: e,
+        title: "g",
+      );
     } finally {
       setState(() {
         _isLoading = false;
